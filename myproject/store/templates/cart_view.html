@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Shopping Cart</h1>
+            <p class="lead fw-normal text-white-50 mb-0">View Your Cart...</p>
+        </div>
+    </div>
+</header>
+{% for item in products %}
+<div class="card" style="display: flex; flex-direction: row;">
+    <img src="{{ item.product.image.url }}" class="card-img-top" alt="..." style="width: 150px; height: 100px;">
+    <div class="card-body" style="flex: 1;">
+        <div style="display: flex; flex-direction: column;">
+            <h5 class="card-title">{{ item.product.name }}</h5>
+            <p class="card-text">{{ item.product.description }}</p>
+        </div>
+        <div style="display: flex; align-items: center;">
+            <form action="{% url 'delete_item' item.product.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary mr-2">-</button>
+            </form>
+            <span class="mr-2">{{ item.quantity }}</span> 
+            <a href="{% url 'add_cart' item.product.id %}" class="btn btn-secondary">+</a> 
+        </div>
+    </div>
+</div>
+{% endfor %}
+<br><br>
+{% endblock %}
