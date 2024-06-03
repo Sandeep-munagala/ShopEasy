@@ -37,43 +37,41 @@ jobs:
           destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-
-  # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-            - name: Heroku Django Deploy
+            - name: Netlify Actions
   # You may pin to the exact commit or the version.
-  # uses: nyakaz73/heroku-django-deploy@1a0bce1d14e7185e5a514dc55dcaf632b0288014
-  uses: nyakaz73/heroku-django-deploy@v0.81
+  # uses: nwtgck/actions-netlify@4cbaf4c08f1a7bfa537d6113472ef4424e4eb654
+  uses: nwtgck/actions-netlify@v3.0.0
   with:
-    # Heroku app name
-    heroku_app_name: 
-    # Heroku api key
-    heroku_api_key: 
-    # Heroku email address
-    heroku_email_address: 
-    # Want to just login
-    want_to_just_login: # optional
-    # Deploy using git
-    use_git: # optional
-    # Deploy using docker Container registry
-    use_docker: # optional
-    # Deploy using heroku Build Manifest
-    use_build_manifest: # optional
-    # Disable collect static on pushing
-    disable_collect_static: # optional
-    # Force push to heroku if there are conflicts or git fast forwards issues
-    force_push: # optional
-    # The directory for the commands to execute in
-    working-directory: # optional, default is ./
-    # This is the default git branch you want to push from eg main or master
-    git_branch: 
+    # Publish directory
+    publish-dir: 
+    # Functions directory
+    functions-dir: # optional
+    # Custom deploy message for Netlify
+    deploy-message: # optional
+    # GitHub token
+    github-token: # optional
+    # Production branch
+    production-branch: # optional
+    # Indicate whether to deploy production build
+    production-deploy: # optional
+    # Enable pull request comment
+    enable-pull-request-comment: # optional
+    # Enable commit comment
+    enable-commit-comment: # optional
+    # Enable GitHub commit status
+    enable-commit-status: # optional
+    # Overwrites pull request comment
+    overwrites-pull-request-comment: # optional
+    # Path to netlify.toml
+    netlify-config-path: # optional
+    # Specifies the prefix for the deployment URL
+    alias: # optional
+    # Whether or not to deploy to GitHub
+    enable-github-deployment: # optional
+    # Environment name of GitHub Deployments
+    github-deployment-environment: # optional
+    # Description of the GitHub Deployment
+    github-deployment-description: # optional
+    # Fails if no credentials provided
+    fails-without-credentials: # optional
           
