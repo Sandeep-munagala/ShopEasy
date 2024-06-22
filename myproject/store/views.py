@@ -82,6 +82,7 @@ def add_cart(request, pk):
 
 def cart_view(request):
     cart_items = Cart.objects.all()
+    # sorted_cart_items = sorted(cart_items, key=lambda x: not x.product.is_sale)
     products = [{'product': item.product_id, 'quantity': item.quantity} for item in cart_items]
     return render(request, 'cart_view.html', {'products': products})
 
